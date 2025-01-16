@@ -5,6 +5,7 @@ app.get("/", (req, res) => {
   // Get the client's IP address
   const clientIp =
     req.headers["x-forwarded-for"] || // Header set by proxies/load balancers
+    req.ip || // IP address from the request object
     req.connection.remoteAddress || // Remote address directly from the connection
     req.socket.remoteAddress || // Remote address from the socket
     (req.connection.socket ? req.connection.socket.remoteAddress : null);
